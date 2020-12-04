@@ -1,16 +1,23 @@
+/* 
+*----------------------------
+* challeng :1 Classes
+*----------------------------
+* 1.  Create a User class
+* 2.  Add a firstName, lastName, and email property
+* 3.  Add get to return a fullName
+* 4.  add a method to check email is matches with user current email
+
+*/ 
 export class User{
     firstName: string;
     lastName:string;
     userEmail:string;
-    constructor(firsName:string, lastName:string, userEmail:string) {
-        this.firstName = firsName;
-        this.lastName = lastName;
-        this.userEmail = userEmail;
+    
+    get fullName():string {
+        return `${this.firstName} ${this.lastName}`;
     }
-    fullName():string{
-        return this.firstName.concat(this.lastName);
+    doesEmailMatch(userEmail:string) :boolean {
+        return this.userEmail === userEmail;
     }
 
 }
-const user = new User('Kadek', 'Wijaya', 'wijaya@gmail');
-user.fullName();
