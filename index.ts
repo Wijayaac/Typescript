@@ -1,15 +1,13 @@
-// new class 
 export class Message{
-    title;
-    message;
-    id;
+    title:string;
+    message:string;
+    isSent:boolean;
+
+    constructor(title:string,message:string) {
+        this.title = title;
+        this.message = message;
+        this.isSent = false;
+    }
 }
 
-// old class
- function Message2(title,message,id) {
-     this.title = title;
-     this.message= message;
-     this.id= id;
- }
-
- const messageTest = new Message2('Say','Hello','First');
+const message = new Message('Say Hello', 'Hello Wijaya')
