@@ -1,14 +1,15 @@
-// object
-const message1 = {title: undefined, message: undefined, id:undefined}
-const message2 = {title: undefined, message: undefined, id:undefined}
-const message3 = {title: undefined, message: undefined, id:undefined}
-
-// class
+// new class 
 export class Message{
     title;
     message;
     id;
 }
 
-const message4 = new Message()
-const message5 = new Message()
+// old class
+ function Message2(title,message,id) {
+     this.title = title;
+     this.message= message;
+     this.id= id;
+ }
+
+ const messageTest = new Message2('Say','Hello','First');
