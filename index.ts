@@ -1,34 +1,19 @@
-export class Animal {
-  protected age: number;
-  legs: number;
-  name: string;
-
-  constructor(age: number, legs: number, name: string) {
-    this.age = age;
-    this.legs = legs;
-    this.name = name;
-  }
+export class Message {
+  title: string;
+  message: string;
+  isSent: boolean;
 }
-// child
-export class Cat extends Animal {
-  constructor(data: { age: number; legs: number; name: string }) {
-    super(data.age, data.legs, data.name);
+
+export class Messages extends Array<Message> {
+  // public method
+  public getValidMessages(messages: Message[]): Message[] {
+    return this.filter((value) => value.message.trim().length > 0);
   }
-  birthday(): number {
-    return this.age + 1;
+
+  //   static method
+  public static getValidMessages(messages: Message[]): Message[] {
+    return messages.filter((value) => value.message.trim().length > 0);
   }
 }
 
-// shape
-// hard to implement other class that have private or protected value.
-export class Dog implements Animal {
-  public age: number;
-  legs: number;
-  name: string;
-}
-
-const firstCat = new Cat({ age: 24, legs: 4, name: "Catty" });
-firstCat.birthday;
-firstCat.name;
-//firstCat.legs;
-//return legs cannot acces outside animal class
+Messages.getValidMessages([]);
