@@ -8,6 +8,11 @@ export class Message{
         this.message = message;
         this.isSent = false;
     }
+    get messageStatus(): string {
+        const sentMessage =this.isSent ? 'Has been sent.' : 'Has not been sent.';
+
+        return `${this.message}|${sentMessage}`;
+    }
     previewMessage():string {
         return this.message.slice(0 , 10).concat('...');
     }
@@ -15,4 +20,5 @@ export class Message{
 
 const message = new Message('Say Hello', 'Hello Wijaya how are you today ?');
 
+message.messageStatus;
 message.previewMessage();
