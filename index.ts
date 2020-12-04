@@ -1,23 +1,31 @@
-/* 
-*----------------------------
-* challeng :1 Classes
-*----------------------------
-* 1.  Create a User class
-* 2.  Add a firstName, lastName, and email property
-* 3.  Add get to return a fullName
-* 4.  add a method to check email is matches with user current email
+export class Animal {
+    age: number;
+    leg: number;
+    name: string;
 
-*/ 
-export class User{
-    firstName: string;
-    lastName:string;
-    userEmail:string;
-    
-    get fullName():string {
-        return `${this.firstName} ${this.lastName}`;
+    constructor(age:number,leg:number,name:string) {
+        this.age = age;
+        this.leg = leg;
+        this.name = name;
     }
-    doesEmailMatch(userEmail:string) :boolean {
-        return this.userEmail === userEmail;
-    }
-
 }
+
+export class Dog extends Animal{
+    gugug():string{
+        return 'GUG! GUGUG! GUGUGUG!'
+    }
+}
+export class Cat extends Animal{
+pus():string{
+    return 'PUS MEONG! PUS MEONG!'
+}
+}
+
+const firstDog = new Dog(10,4,'Kevin');
+firstDog.age;
+firstDog.gugug();
+
+const firstCat = new Cat(5,4,'Puss');
+firstCat.pus();
+firstCat.name;
+    
