@@ -1,32 +1,55 @@
-export class User<T> {
-    name : string;
-    age : number;
-    email: string;
-    isMale : boolean;
-    public classicUserData :T;
+/* 
+*----------------------------
+* challeng :2 Inheritance
+*----------------------------
+* 1.  Use the User class bellow.
+* 2.  Create an Admin class that extends User.
+* 3.  Create a Guest class that implements User.
+* 4.  Have both classes below pass firstName, lastName, and userEmail in their constructor
 
-    /**
-     * mergeUserData
-     */
-    public mergeUserData(params: T):void {
-        const { name, isMale, age, email} = this;
+*/
+export class User {
+  firstName: string;
+  lastName: string;
+  userEmail: string;
 
-        this.classicUserData = {name, isMale, age, email, ...params };
-    }
+  constructor(firstName: string, lastname: string, userEmail: string) {
+    this.firstName = firstName;
+    this.lastName = lastname;
+    this.userEmail = userEmail;
+  }
+
+  get fullName(): string {
+    return `${this.firstName} ${this.lastName}`;
+  }
+  doesEmailMatch(userEmail: string): boolean {
+    return this.userEmail === userEmail;
+  }
 }
 
-interface ClassicUser {
-    name : { first : string, last : string}
+export class Admin extends User {
+  constructor(data: {
+    firstName: string;
+    lastName: string;
+    userEmail: string;
+  }) {
+    super(data.firstName, data.lastName, data.userEmail);
+  }
 }
-interface SecondClassicUser {
-    name : {first: string, middle: string, last:string};
+export class Guest implements User {
+  firstName: string;
+  lastName: string;
+  userEmail: string;
+
+  constructor(firstName: string, lastName: string, userEmail: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.userEmail = userEmail;
+  }
+  get fullName(): string {
+    return `${this.lastName} ${this.firstName}`;
+  }
+  doesEmailMatch(userEmail: string): boolean {
+    return this.userEmail === userEmail;
+  }
 }
-
-const firstUser = new User<ClassicUser>();
-const seccondUser = new User<SecondClassicUser>();
-
-firstUser.mergeUserData({name : {first : 'Kadek', last: ' Wijaya'}});
-firstUser.classicUserData.name.first;
-
-seccondUser.mergeUserData({name : {first : 'Kadek',middle:'AC', last: ' Wijaya'}});
-seccondUser.classicUserData.name.middle;
