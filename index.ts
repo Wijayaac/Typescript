@@ -1,46 +1,32 @@
-// base parent class
-export class Animal {
-    age: number;
-    legs: number;
-    name: string;
-    lives = 1;
+export class User<T> {
+    name : string;
+    age : number;
+    email: string;
+    isMale : boolean;
+    public classicUserData :T;
 
-    constructor(age:number,legs:number,name:string) {
-        this.age = age;
-        this.legs = legs;
-        this.name = name;
-    }
-    pus(): string {
-        return 'NGEENGG NGENNGG';
-    }
-}
-export class Cat extends Animal{
-    lives = 9;
-    constructor(data :{age:number,legs:number,name:string}) {
-        super(data.age, data.legs, data.name);
-    }
-    pus(): string {
-        super.pus();
-        super.lives;
-        return 'PUSS MEONG ! PUSS MEONG!';
-    }
-}
-// Derived / Child Class / Same Shape
-export class Dog implements Animal{
-    age:number;
-    legs: number;
-    name: string;
-    lives: 1;
-    gugug():string{
-        return 'GUG! GUGUG! GUGUGUG!'
+    /**
+     * mergeUserData
+     */
+    public mergeUserData(params: T):void {
+        const { name, isMale, age, email} = this;
+
+        this.classicUserData = {name, isMale, age, email, ...params };
     }
 }
 
-const firstDog = new Dog();
-const firstCat = new Cat({age: 25, legs:4, name: 'Catty'});
+interface ClassicUser {
+    name : { first : string, last : string}
+}
+interface SecondClassicUser {
+    name : {first: string, middle: string, last:string};
+}
 
+const firstUser = new User<ClassicUser>();
+const seccondUser = new User<SecondClassicUser>();
 
-console.log(firstDog instanceof Animal);
-//return false 
-console.log(firstCat instanceof Animal);
-//return true    
+firstUser.mergeUserData({name : {first : 'Kadek', last: ' Wijaya'}});
+firstUser.classicUserData.name.first;
+
+seccondUser.mergeUserData({name : {first : 'Kadek',middle:'AC', last: ' Wijaya'}});
+seccondUser.classicUserData.name.middle;
