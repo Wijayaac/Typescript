@@ -1,34 +1,16 @@
-export class Message{
-    title:string;
-    message:string;
-    private _isSent:boolean;
-    set isSent(value:boolean){
-        if (value === true) {
-            this.deliveryDate = new Date();
-        }
-        this._isSent =value;
+export class User{
+    firstName: string;
+    lastName:string;
+    userEmail:string;
+    constructor(firsName:string, lastName:string, userEmail:string) {
+        this.firstName = firsName;
+        this.lastName = lastName;
+        this.userEmail = userEmail;
     }
-    get isSent(): boolean{
-        return this._isSent;
+    fullName():string{
+        return this.firstName.concat(this.lastName);
     }
-    deliveryDate: Date;
 
-    constructor(title:string,message:string) {
-        this.title = title;
-        this.message = message;
-        this.isSent = false;
-    }
-    get messageStatus(): string {
-        const sentMessage =this.isSent ? 'Has been sent.' : 'Has not been sent.';
-
-        return `${this.message}|${sentMessage}`;
-    }
-    previewMessage():string {
-        return this.message.slice(0 , 10).concat('...');
-    }
 }
-
-const message = new Message('Say Hello', 'Hello Wijaya how are you today ?');
-
-message.messageStatus;
-message.previewMessage();
+const user = new User('Kadek', 'Wijaya', 'wijaya@gmail');
+user.fullName();
